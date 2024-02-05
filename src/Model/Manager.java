@@ -1,19 +1,26 @@
 package Model;
 
-public class Manager extends member{
+public class Manager extends member {
 
-    public Manager(int daysLeave) {
-        super(daysLeave);
+    String specialization;
+
+    public Manager(String name, int age, String contact, String address, int salary_per_day, String specialization) {
+        super(name, age, contact, address, salary_per_day);
+        this.specialization = specialization;
     }
 
-    public Manager(String name, int age, String contact, String address, int salary) {
-        super(name, age, contact, address, salary);
-    }
+    @Override
+    public double getSalary(int leaveDays) {
+        double baseSalary = super.getSalary(leaveDays);
+        double salaryFactor = 1;
 
-//    public void getInfo(){
-//        System.out.println("This is info");
-//    }
-    public void totalSalary(){
+        if (specialization == "A") {
+            salaryFactor = 5;
+        } else if (specialization == "B") {
+            salaryFactor = 9;
+        }
+
+        return baseSalary * salaryFactor;
 
     }
 }
